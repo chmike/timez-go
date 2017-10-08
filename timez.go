@@ -22,11 +22,11 @@ of minutes relative to 1024. Thus the offset value 1024 is the time
 offset 00:00, the value 984 is the time offset -01:00, and the value
 1084 it the time offset +01:00.
 
-	64                                 11        0   bits
-	|___________________  ______________|________|
-	|__________________//_______________|________|
-	|  number of micro seconds elapsed  |  time  |
-    | since 1970-01-01T00:00:00:.000000 | offset |
+	64                                11        0   bits
+	|__________________  ______________|________|
+	|_________________//_______________|________|
+	|  number of microseconds elapsed  |  time  |
+    | since 1970-01-01T00:00:00.000000 | offset |
 
 
 The epoch is picked so that the unix time period is covered and beyond. The
