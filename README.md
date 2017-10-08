@@ -1,6 +1,6 @@
 [![GoDoc](https://godoc.org/github.com/chmike/timez-go?status.svg)](https://godoc.org/github.com/chmike/timez-go)
-[![Build](https://travis-ci.org/chmike/timez-go.svg?branch=labels)](https://travis-ci.org/chmike/timez-go?branch=labels)
-[![Coverage](https://coveralls.io/repos/github/chmike/timez-go/badge.svg?branch=labels)](https://coveralls.io/github/chmike/timez-go?branch=labels)
+[![Build](https://travis-ci.org/chmike/timez-go.svg?branch=master)](https://travis-ci.org/chmike/timez-go?branch=master)
+[![Coverage](https://coveralls.io/repos/github/chmike/timez-go/badge.svg?branch=master)](https://coveralls.io/github/chmike/timez-go?branch=master)
 [![Go Report](https://goreportcard.com/badge/github.com/chmike/timez-go)](https://goreportcard.com/report/github.com/chmike/timez-go)
 ![Status](https://img.shields.io/badge/status-beta-orange.svg)
 
