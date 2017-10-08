@@ -1,6 +1,7 @@
 # TimeZ 
 
-Package impjementing Timez. A timez is a compact and convenient binary encoding for UTC time in micro seconds units and a local time offset.
+Go package implementing Timez. A timez is a compact and convenient binary encoding
+for UTC time in microseconds units and a local time offset.
 
 ## Why ? 
 
@@ -11,8 +12,17 @@ equivalent standard ([RFC3339]()https://www.ietf.org/rfc/rfc3339.txt) for
 the Internet. 
 
 These time encodings support combining a local time with a time offset to 
-UTC. But these encodings are text only. Timez is the binary equivalent 
-of these time values.
+UTC. But they are text only. Timez is the binary equivalent of these time values.
+
+A timez value encodes the UTC time with microsecond precision and the local time
+offset in a 64 bit unsigned integer. Both values can be retrieved independently.
+This makes timez a convenient stamp value in binary messages crossing local time
+offset zones boundaries. 
+
+The most interseting property of timez values is that comparing the integer 
+values is the same as comparing by the timez values by UTC time and, when
+equal, by time offset. Timez values are then convenient and efficient to use
+as key in a sorted table, or as indexed value stored in a database.
 
 ## Timez properties
 
@@ -30,13 +40,13 @@ the UTC time, and, when equal, comparing the time offset.
 ## Timez encoding
 
 A Timez encodes the number of micro seconds elapsed since 
-1970-01-01T00:00:00.000000Z in the 53 most significant bits of the 64 bit
+1970-01-01T00:00:00.000000Z in the 53 most significant bits of a 64 bit
 unsigned integer.
 
 The time offset is encoded in the 11 less significant bits as a number
 of minutes relative to 1024. Thus the offset value 1024 is the time 
 offset 00:00, the value 984 is the time offset -01:00, and the value 
-1084 it the time offset +01:00. 
+1084 it the time offset +01:00. The time offset value 0 is invalid.
 
 	64                                 11        0   bits
 	|___________________  ______________|________|
@@ -44,11 +54,7 @@ offset 00:00, the value 984 is the time offset -01:00, and the value
 	|  number of micro seconds elapsed  |  time  |
     | since 1970-01-01T00:00:00:.000000 | offset |
 
-When the offset value is 0, the 53 most significant bits encode the 
-positive difference between the micro second counts of two timez
-time values. Note that this is not an absolute time interval because of the
-leap seconds that may have been inserted or removed, but it's a reasonnable
-approximation.
+The default initializer of timez values yields an invalid timez value. 
 
 Note: the curent timez encoding of this package differ from the 
 "github/chmike/timez" C library in that the epoch is different.
