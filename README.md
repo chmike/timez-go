@@ -14,6 +14,8 @@ the Internet.
 These time encodings support combining a local time with a time offset to 
 UTC. But they are text only. Timez is the binary equivalent of these time values.
 
+## What is a timez ?
+
 A timez value encodes the UTC time with microsecond precision and the local time
 offset in a 64 bit unsigned integer. Both values can be retrieved independently.
 This makes timez a convenient stamp value in binary messages crossing local time
@@ -24,18 +26,17 @@ values is the same as comparing by the timez values by UTC time and, when
 equal, by time offset. Timez values are then convenient and efficient to use
 as key in a sorted table, or as indexed value stored in a database.
 
-## Timez properties
+## The microsecond resolution
 
-1. A timez can encode an absolute time or a time interval. 
-2. Timez are encoded in a 64 bit unsigned integer to be simple and efficient to
-mnipulate, stored in a database and be indexed ;
-3. Timez provides time with micro second resolution which is acceptable for
-Internet applications since a photon travels at most 300m in 1 micro second in
-vacuum ;
-4. The time offset is in minutes and covers the range -17:03 to 17:03 ;
-5. The covered time range is from Jan, 1 1970 to approximatly xx, x 2255 ;
-6. Comparing the integer encoding a timez yields the same result as comparing
-the UTC time, and, when equal, comparing the time offset.
+The microsecond UTC time resolution is a compromise. A nanosecond resolution
+would have been preferable, but it wouldn't fit in a 64bit integer.
+[NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) can at very best
+synchronize around a few tens of microseconds. Note that, a photon can travel
+at most 300m in a microsoncond in vacuum. With GPS, the  best time 
+synchronization we could get is around a few tens of nanoseconds. 
+
+So for Internet application and message stamps a microsecond precision is
+actually an acceptable compromise.
 
 ## Timez encoding
 
@@ -48,11 +49,11 @@ of minutes relative to 1024. Thus the offset value 1024 is the time
 offset 00:00, the value 984 is the time offset -01:00, and the value 
 1084 it the time offset +01:00. The time offset value 0 is invalid.
 
-	64                                 11        0   bits
-	|___________________  ______________|________|
-	|__________________//_______________|________|
-	|  number of micro seconds elapsed  |  time  |
-    | since 1970-01-01T00:00:00:.000000 | offset |
+	64                                11        0   bits
+	|__________________  ______________|________|
+	|_________________//_______________|________|
+	|  number of microseconds elapsed  |  time  |
+    | since 1970-01-01T00:00:00.000000 | offset |
 
 The default initializer of timez values yields an invalid timez value. 
 
