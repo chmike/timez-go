@@ -33,14 +33,14 @@ as key in a sorted table, or as indexed value stored in a database.
 ## The microsecond resolution
 
 The microsecond UTC time resolution is a compromise. A nanosecond resolution
-would have been preferable, but it wouldn't fit in a 64bit integer.
+would have been preferable, but it wouldn't fit in a 64bit integer with the
+time offset.
 [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) can at very best
-synchronize around a few tens of microseconds. Note that, a photon can travel
-at most 300m in a microsoncond in vacuum. With GPS, the  best time 
-synchronization we could get is around a few tens of nanoseconds. 
-
-So for Internet application and message stamps a microsecond precision is
-actually an acceptable compromise.
+synchronize around a few tens of microseconds. With GPS, the  best time 
+synchronization we could get is around a few tens of nanoseconds. Since
+a photon can travel at most 300m in a microsoncond in vacuum, for message
+stamps with Internet application, a microsecond precision is an acceptable
+compromise.
 
 ## Timez encoding
 
