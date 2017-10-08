@@ -1,3 +1,9 @@
+[![GoDoc](https://godoc.org/github.com/chmike/timez-go?status.svg)](https://godoc.org/github.com/chmike/timez-go)
+[![Build](https://travis-ci.org/chmike/timez-go.svg?branch=labels)](https://travis-ci.org/chmike/timez-go?branch=labels)
+[![Coverage](https://coveralls.io/repos/github/chmike/timez-go/badge.svg?branch=labels)](https://coveralls.io/github/chmike/timez-go?branch=labels)
+[![Go Report](https://goreportcard.com/badge/github.com/chmike/timez-go)](https://goreportcard.com/report/github.com/chmike/timez-go)
+![Status](https://img.shields.io/badge/status-beta-orange.svg)
+
 # TimeZ 
 
 Go package implementing Timez. A timez is a compact and convenient binary encoding
