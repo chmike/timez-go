@@ -9,12 +9,10 @@ for UTC time in microseconds units and a local time offset.
 issued the standard [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) to 
 normalize text encoded time values. The [IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) issued an
 equivalent standard ([RFC3339]()https://www.ietf.org/rfc/rfc3339.txt) for 
-the Internet. 
-
-These time encodings support combining a local time with a time offset to 
+the Internet. These time encodings combine a local time with a time offset relative to 
 UTC. But they are text only. Timez is the binary equivalent of these time values.
 
-## What is a timez ?
+## What is a timez ?
 
 A timez value encodes the UTC time with microsecond precision and the local time
 offset in a 64 bit unsigned integer. Both values can be retrieved independently.
