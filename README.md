@@ -3,7 +3,7 @@
 [![Coverage](https://coveralls.io/repos/github/chmike/timez-go/badge.svg?branch=master)](https://coveralls.io/github/chmike/timez-go?branch=master)
 [![Go Report](https://goreportcard.com/badge/github.com/chmike/timez-go)](https://goreportcard.com/report/github.com/chmike/timez-go)
 ![Status](https://img.shields.io/badge/status-beta-orange.svg)
-![release](https://img.shields.io/github/release/chmike/securecookie.svg)
+![release](https://img.shields.io/github/release/chmike/timez-go.svg)
 
 # TimeZ 
 
