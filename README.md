@@ -7,8 +7,10 @@
 
 # TimeZ 
 
-Go package implementing Timez. A timez is a compact and convenient binary encoding
-for UTC time in microseconds units and a local time offset.
+Go package implementing Timez. A timez is 64 bit unsigned integer combining an 
+UTC time value in microsecond, and a time zone time offset in minutes. Comparing 
+two such unisgned integer yields the same as if the UTC time was first compared, 
+and if equal, the time zone offset were compared.
 
 ## Why ? 
 
@@ -23,13 +25,13 @@ UTC. But they are text only. Timez is the binary equivalent of these time values
 
 A timez value encodes the UTC time with microsecond precision and the local time
 offset in a 64 bit unsigned integer. Both values can be retrieved independently.
-This makes timez a convenient stamp value in binary messages crossing local time
-offset zones boundaries. 
+This makes timez a convenient stamp value in binary messages crossing time zone
+boundaries. 
 
 The most interseting property of timez values is that comparing the integer 
-values is the same as comparing by the timez values by UTC time and, when
-equal, by time offset. Timez values are then convenient and efficient to use
-as key in a sorted table, or as indexed value stored in a database.
+values is equivalent to compare UTC time, and when equal, to compare time zone
+time offsets. Timez values are then convenient and efficient to use
+as key in a sorted table, or as ordered index key in a database.
 
 ## The microsecond resolution
 
@@ -39,15 +41,16 @@ time offset.
 [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) can at very best
 synchronize around a few tens of microseconds. With GPS, the  best time 
 synchronization we could get is around a few tens of nanoseconds. Since
-a photon can travel at most 300m in a microsoncond in vacuum, for message
+a photon can travel at most 300m in a microsecond in vacuum, for message
 stamps with Internet application, a microsecond precision is an acceptable
 compromise.
 
 ## Timez encoding
 
-A Timez encodes the number of micro seconds elapsed since 
+A Timez encodes the number of microseconds elapsed since 
 1970-01-01T00:00:00.000000Z in the 53 most significant bits of a 64 bit
-unsigned integer.
+unsigned integer. The 53 bit microsecond counter will wrap 285 years after
+1970, thus in the year 2255.
 
 The time offset is encoded in the 11 less significant bits as a number
 of minutes relative to 1024. Thus the offset value 1024 is the time 
@@ -60,10 +63,10 @@ offset 00:00, the value 984 is the time offset -01:00, and the value
     |  number of microseconds elapsed  |  time  |
     | since 1970-01-01T00:00:00.000000 | offset |
 
-The default initializer of timez values yields an invalid timez value. 
+The default initializer of Go timez values yields an invalid timez value. 
 
 Note: the curent timez encoding of this package differ from the 
-"github/chmike/timez" C library in that the epoch is different.
+"github/chmike/timez" C library in that we now use 64 bit unsigned integer.
 
 Feedback is welcome.
 
