@@ -54,7 +54,7 @@ unsigned integer. The 53 bit microsecond counter will wrap 285 years after
 
 The time offset is encoded in the 11 less significant bits as a number
 of minutes relative to 1024. Thus the offset value 1024 is the time 
-offset 00:00, the value 984 is the time offset -01:00, and the value 
+offset 00:00, the value 964 is the time offset -01:00, and the value 
 1084 it the time offset +01:00. The time offset value 0 is invalid.
 
     64                                11        0   bits
